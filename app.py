@@ -249,10 +249,13 @@ def handle_message(event):
             messages1 = "現在マグロは" + str(count) + "匹"
             if count == 1:
                 rich_menu1()
+                print("現在マグロは1匹")
             elif count == 2:
                 rich_menu2()
+                print("現在マグロは2匹")
             elif count >= 3:
                 rich_menu3()
+                print("現在マグロは3匹以上")
             else:
                 pass
             line_bot_api.reply_message(
