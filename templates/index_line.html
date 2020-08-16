@@ -12,6 +12,10 @@
 
 <body>
     <div id="liffAppContent">
+        <div class="calender">
+            <label for="start">Start date:</label>
+            <input type="date" id="start" name="trip-start" value="2020-08-23" min="2020-08-23" max="2021-08-23">
+        </div>
         <!-- ACTION BUTTONS -->
         <div class="buttonGroup">
             <div class="buttonRow">
@@ -116,10 +120,6 @@
                 <p>Please refer to the <a href="https://developers.line.biz/en/reference/liff/#initialize-liff-app">API reference page</a> for more information.</p>
             </div>
         </div>
-    </div>
-    <div class="calender">
-        <label for="start">Start date:</label>
-        <input type="date" id="start" name="trip-start" value="2020-08-23" min="2020-08-23" max="2021-08-23">
     </div>
     <!-- LIFF ID ERROR -->
     <div id="liffIdErrorMessage" class="hidden">

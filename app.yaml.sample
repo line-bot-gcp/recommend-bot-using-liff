@@ -1,5 +1,5 @@
 runtime: python37
-entrypoint: gunicorn -b :$PORT main:app
+entrypoint: gunicorn -b :$PORT app:app
 
 env_variables:
   USER_ID: ""
