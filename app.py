@@ -38,6 +38,7 @@ USER_ID                   = os.environ["USER_ID"]
 YOUR_CHANNEL_ACCESS_TOKEN = os.environ["YOUR_CHANNEL_ACCESS_TOKEN"]
 YOUR_CHANNEL_SECRET       = os.environ["YOUR_CHANNEL_SECRET"]
 STORAGE_BUCKET            = os.environ["STORAGE_BUCKET"]
+LIFF_URL                  = os.environ["LIFF_URL"]
 
 app = Flask(__name__)
 bootstrap = Bootstrap(app)
@@ -62,7 +63,7 @@ rmm.remove_all()
 rm = RichMenu(name="Test menu", chat_bar_text="menu 0")
 rm.add_area(0, 0, 2500, 843, "message", "マグロ")
 rm.add_area(0, 843, 830, 840, "message", "捕獲")
-rm.add_area(833, 843, 830, 840, "message", "逃がす")
+rm.add_area(833, 843, 830, 840, "uri", LIFF_URL)
 rm.add_area(1666, 843, 830, 840, "message", "マグロ一丁")
 res = rmm.register(rm, image0)
 richmenu_id0 = res["richMenuId"]
@@ -72,7 +73,7 @@ print(res)
 rm = RichMenu(name="Test menu", chat_bar_text="menu 1")
 rm.add_area(0, 0, 2500, 843, "message", "マグロ")
 rm.add_area(0, 843, 830, 840, "message", "捕獲")
-rm.add_area(833, 843, 830, 840, "message", "逃がす")
+rm.add_area(833, 843, 830, 840, "uri", LIFF_URL)
 rm.add_area(1666, 843, 830, 840, "message", "マグロ一丁")
 res = rmm.register(rm, image1)
 richmenu_id1 = res["richMenuId"]
@@ -82,7 +83,7 @@ print(res)
 rm = RichMenu(name="Test menu", chat_bar_text="menu 2")
 rm.add_area(0, 0, 2500, 843, "message", "マグロ")
 rm.add_area(0, 843, 830, 840, "message", "捕獲")
-rm.add_area(833, 843, 830, 840, "message", "逃がす")
+rm.add_area(833, 843, 830, 840, "uri", LIFF_URL)
 rm.add_area(1666, 843, 830, 840, "message", "マグロ一丁")
 res = rmm.register(rm, image2)
 richmenu_id2 = res["richMenuId"]
@@ -92,7 +93,7 @@ print(res)
 rm = RichMenu(name="Test menu", chat_bar_text="menu 3")
 rm.add_area(0, 0, 2500, 843, "message", "マグロ")
 rm.add_area(0, 843, 830, 840, "message", "捕獲")
-rm.add_area(833, 843, 830, 840, "message", "逃がす")
+rm.add_area(833, 843, 830, 840, "uri", LIFF_URL)
 rm.add_area(1666, 843, 830, 840, "message", "マグロ一丁")
 res = rmm.register(rm, image3)
 richmenu_id3 = res["richMenuId"]
