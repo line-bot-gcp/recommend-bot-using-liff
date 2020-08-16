@@ -1,0 +1,21 @@
+runtime: python37
+entrypoint: gunicorn -b :$PORT main:app
+
+env_variables:
+  USER_ID: ""
+  YOUR_CHANNEL_SECRET: ""
+  YOUR_CHANNEL_ACCESS_TOKEN: ""
+  STORAGE_BUCKET: ""  ## example https://storage.googleapis.com/{Bucket Name}
+  # All URLs ending in .gif .png or .jpg are treated as paths to
+# static files in the static/ directory. The URL pattern is a
+# regular expression, with a grouping that is inserted into the
+# path to the file.
+handlers:
+# All URLs ending in .gif .png or .jpg are treated as paths to
+# static files in the static/ directory. The URL pattern is a
+# regular expression, with a grouping that is inserted into the
+# path to the file.
+- url: /(.*\.(gif|png|jpg))$
+  static_files: static/\1
+  upload: static/.*\.(gif|png|jpg)$
+  # ...
