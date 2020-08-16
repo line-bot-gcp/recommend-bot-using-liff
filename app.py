@@ -159,7 +159,7 @@ def count_zero():
     global maguro_count
     maguro_count = 0
     return maguro_count
-
+    
 def rich_menu0():
     global rmm,richmenu_id0
     rmm.apply(USER_ID, richmenu_id0)
