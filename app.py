@@ -15,7 +15,7 @@ bootstrap = Bootstrap(app)
 
 @app.route('/')
 def do_get():
-    return render_template('index.html')
+    return render_template('index_line.html')
 # ryoshi
 @app.route('/ryoushi')
 def ryoushi():
@@ -39,7 +39,7 @@ def final():
 
 @app.route('/line')
 def line():
-    return render_template('index_line.html')
+    return render_template('index.html')
 
 
 if __name__ == '__main__':
