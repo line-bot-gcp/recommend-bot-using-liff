@@ -11,6 +11,12 @@
   + gcloud
     + なるべく最新
 
+## 参考ドキュメント
+
++ Quickstart using a server client library
+  + https://cloud.google.com/firestore/docs/quickstart-servers?hl=en#command-line
+
+
 ## GCP を操作するための準備をする
 
 + GCP の認証をする
@@ -45,6 +51,36 @@ gcloud beta services enable storage-component.googleapis.com
 git clone https://hogehoge
 cd hogehoge
 ```
+
+## [WIP] Service Account の作成と Role の割り当て、JSON Key の取得を行う
+
++ WIP
+
+```
+export _common='liff-bot'
+
+gcloud iam service-accounts create ${_common}
+```
+
++ WIP
+
+```
+# ここで SA から mail を引っ張り出す
+
+
+gcloud projects add-iam-policy-binding {_pj_id} \
+    --member "serviceAccount:[NAME]@[PROJECT_ID].iam.gserviceaccount.com" \
+    --role "roles/owner"
+```
+
++ WIP
+
+```
+# これも変数化する
+gcloud iam service-accounts keys create [FILE_NAME].json --iam-account [NAME]@[PROJECT_ID].iam.gserviceaccount.com
+```
+
+
 
 ## App Engine をデプロイする
 
