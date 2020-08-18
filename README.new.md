@@ -54,30 +54,29 @@ cd hogehoge
 
 ## [WIP] Service Account の作成と Role の割り当て、JSON Key の取得を行う
 
-+ WIP
++ Service Account の作成
 
 ```
 export _common='liff-bot'
 
-gcloud iam service-accounts create ${_common}
+gcloud iam service-accounts create ${_common} \
+    --display-name ${_common}
 ```
 
-+ WIP
++ 作成した Service Account に Project Owner の Role を付与
 
 ```
-# ここで SA から mail を引っ張り出す
+export _sa_mail=$(gcloud iam service-accounts list | grep ${_common} | awk '{print $2}')
 
-
-gcloud projects add-iam-policy-binding {_pj_id} \
-    --member "serviceAccount:[NAME]@[PROJECT_ID].iam.gserviceaccount.com" \
+gcloud projects add-iam-policy-binding ${_pj_id} \
+    --member "serviceAccount:${_sa_mail}" \
     --role "roles/owner"
 ```
 
-+ WIP
++ 作成した Service Account を実行する Json ファイルの生成
 
 ```
-# これも変数化する
-gcloud iam service-accounts keys create [FILE_NAME].json --iam-account [NAME]@[PROJECT_ID].iam.gserviceaccount.com
+gcloud iam service-accounts keys create ${_common}.json --iam-account ${_sa_mail}
 ```
 
 
