@@ -52,7 +52,7 @@ git clone https://hogehoge
 cd hogehoge
 ```
 
-## [WIP] Service Account の作成と Role の割り当て、JSON Key の取得を行う
+## Service Account の作成と Role の割り当て、Json Key の取得を行う
 
 + Service Account の作成
 
