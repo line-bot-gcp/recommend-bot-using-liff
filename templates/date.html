@@ -1,57 +1,46 @@
 <!DOCTYPE html>
 <html lang="ja">
-  <head>
+
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>RYOUSHI</title>
-    <link
-      href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      href="https://use.fontawesome.com/releases/v5.12.1/css/all.css"
-      rel="stylesheet"
-    />
-    <link
-      rel="stylesheet"
-      href="https://unpkg.com/modern-css-reset/dist/reset.min.css"
-    />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet" />
+    <link href="https://use.fontawesome.com/releases/v5.12.1/css/all.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://unpkg.com/modern-css-reset/dist/reset.min.css" />
     <link rel="stylesheet" href="static/css/style.css" />
-  </head>
-  <body>
+</head>
+
+<body>
     <header>
-      <div class="header_title">
-        <h1>予約</h1>
-      </div>
+        <div class="header_title">
+            <h1>予約</h1>
+        </div>
     </header>
     <main>
-      <div class="inner">
-        <section>
-          <div class="current_selection">
-            <p class="course_name">マグロ漁レッスン</p>
-            <div class="course_contents">
-              <p><i class="fas fa-yen-sign"></i>20,000</p>
-              <p><i class="far fa-clock"></i>2:00 - 8:00</p>
-            </div>
-          </div>
+        <div class="inner">
+            <section>
+                <div class="current_selection">
+                    <p class="course_name">マグロ漁レッスン</p>
+                    <div class="course_contents">
+                        <p><i class="fas fa-yen-sign"></i>20,000</p>
+                        <p><i class="far fa-clock"></i>2:00 - 8:00</p>
+                    </div>
+                </div>
+            </section>
+            <section>
+                <div class="page_title">
+                    <h2>日付を選択</h2>
+                </div>
+                <div class="calender">
+                    <label for="start">Start date:</label>
+                    <input type="date" id="start" name="trip-start" value="2020-08-23" min="2020-08-23" max="2021-08-23">
+                </div>
+                <a href="/final">仮のリンク（最終ページへ）</a>
+        </div>
         </section>
-        <section>
-          <div class="page_title">
-            <h2>日付を選択</h2>
-          </div>
-          <div class="google_calendar">
-            <iframe
-              src="https://calendar.google.com/calendar/embed?src=kakuemon2018%40gmail.com&ctz=Asia%2FTokyo"
-              style="border: solid 1px #777;"
-              width="800"
-              height="600"
-              frameborder="0"
-              scrolling="no"
-            ></iframe>
-            <a href="/final">仮のリンク（最終ページへ）</a>
-          </div>
-        </section>
-      </div>
+        </div>
     </main>
-  </body>
+</body>
+
 </html>
