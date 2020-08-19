@@ -3,6 +3,7 @@ Pillow==7.2.0
 line-bot-sdk==1.13.0
 pandas==0.25.1
 Flask==1.1.2
+Flask-Cors==3.0.8
 line-bot-sdk==1.13.0
 pandas==0.25.1
 google-api-core==1.21.0
