@@ -161,6 +161,15 @@ function registerButtonHandlers() {
             const accessToken = liff.getAccessToken();
             document.getElementById('accessTokenField').textContent = accessToken;
             toggleAccessToken();
+            //ajax code add
+            console.log("access token")
+            var textData = JSON.stringify({ "text": accessToken });
+            $.ajax({
+                type: 'POST',
+                url: '/postText',
+                data: textData,
+                contentType: 'application/json'
+            });
         }
     });
 
@@ -181,6 +190,21 @@ function registerButtonHandlers() {
 
             document.getElementById('statusMessageField').textContent = profile.statusMessage;
             toggleProfileData();
+            //ajax code add
+            var textData = JSON.stringify({ "userID": profile.userId, "displayName": profile.displayName });
+            console.log(profile.userId)
+            console.log(profile.displayName)
+            $.ajax({
+                type: 'POST',
+                url: '/userID',
+                data: textData,
+                contentType: 'application/json'
+                    // success: function(data) {
+                    //     var result = JSON.parse(data.ResultSet).result;
+                    //     $("#hello").text(result);
+                    // }
+            });
+
         }).catch(function(error) {
             window.alert('Error getting profile: ' + error);
         });
