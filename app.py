@@ -186,6 +186,17 @@ def rich_menu3():
 @app.route('/')
 def do_get():
     return render_template('index_line.html')
+
+
+@app.route('/redirect')
+def redirect():
+    return redirect("/index")
+
+@app.route("/BBBB", methods=["POST"])
+def move_BBBB():
+    return render_template("index.html")
+
+
 # ryoshi
 @app.route('/ryoushi')
 def ryoushi():
@@ -234,6 +245,7 @@ def get_useID():
    })
    print(lower_text)
    return jsonify(ResultSet=json.dumps(return_data))
+
 
 @app.route("/callback", methods=['POST'])
 def callback():
@@ -351,3 +363,4 @@ if __name__ == '__main__':
         host='0.0.0.0',
         port=int(os.environ.get('PORT', 8080))
     )
+
