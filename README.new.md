@@ -43,7 +43,7 @@ gcloud auth login -q
 ```
 export _pj_id='Your GCP Project ID'
 
-export _pj_id='ca-igarashi-test-v5v2'
+export _pj_id='ca-igarashi-test-v5v2-0822'
 export _rg='asia-northeast1'
 export _zn='asia-northeast1-c'
 
@@ -69,7 +69,7 @@ gcloud beta services enable storage-component.googleapis.com
 
 ```
 git clone https://github.com/line-bot-gcp/recommend-bot-using-liff.git
-cd recommend-bot-using-liff.git
+cd recommend-bot-using-liff
 ```
 
 ## Service Account の作成と Role の割り当て、Json Key の取得を行う
