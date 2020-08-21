@@ -60,7 +60,6 @@ image1 = "static/images/menu1.png"
 image2 = "static/images/menu2.png"
 image3 = "static/images/menu3.png"
 
-
 # all rich menu deleate
 rmm.remove_all()
 

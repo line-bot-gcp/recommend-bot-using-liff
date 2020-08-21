@@ -162,7 +162,7 @@ https://ca-igarashi-test-v5v2-0822.an.r.appspot.com
 cd -
 ```
 
-## [WIP] Firestore をデプロイする
+## Firestore をデプロイする
 
 GCP コンソールの FireStore に行き、 `Native mode` を選択
 
@@ -202,7 +202,8 @@ token などを取得
   + `Your user ID` を取得
 + `Messaging API` タブにて
   + `Channel access token` を取得
-  + `Webhook URL` に App Engine の URL を入力 (WIP)(/callback が必要かも?)
+  + `Webhook URL` に `${App Engine の URL}/callback` を入力
+  + `Use webhook` を on にする
 
 ### LINE Login を作る
 
@@ -215,23 +216,26 @@ Channel descriptionl | liff-api-gcp-bot
 App types | ✔ Web app <br>✔ Mobile app
 Email address | あなたの Email
 
+### LINE Login の中で LIFF を設定する
 
+![](./images/readme-08.png)
 
-
-
-
-
-
-
+Key | Value
+:- | :-
+LIFF app name | liff-login-setting
 Size | Tall
 Endpoint URL | App Engine の URL (Ex. https://hogehoge)
-Scopes | `profile` `openid` `chat_message.write` の全てにチェックする
+Scopes | ✔ profile <br>✔ openid<br>✔ chat_message.write
 Bot link feature | On(Nomal)
 Scan QR | 無し
 
+### LIFF ID を確認する
 
+![](./images/readme-09.png)
 
 ## [WIP] App Engine をデプロイする
+
++ app.yaml を作る
 
 ```
 
@@ -243,9 +247,9 @@ export _YR_BCK=${_pj_id}-liff-20200823
 
 
 export _UID="Udfd12adfcc22b1633bfb80f270d75193"
-export _YR_CH_SCR="46024dcd52682ccb821c3b39057a28a6"
-export _YR_CH_ACC_TKN='ijL4J/asnkPxxqylJiI3R7fmiDZsSeHLzGHiK7KFNTalSYw+Sb7kVEqnWuigADI/OuSlm55UsYBaLtTXlJWfSv6RX4jIFF+jV8rhcjfMH+UT5NUxIVvmSPPJCftBpHwSUWrLGDx/s9XcMhb+ciH0YwdB04t89/1O/w1cDnyilFU='
-export _LIFF_ID="1654838518-pW5bGvkR"
+export _YR_CH_SCR="afc3386f3a74f9bfb00fbf303811e266"
+export _YR_CH_ACC_TKN=''
+export _LIFF_ID="1654838628-2kAyK3wZ"
 export _YR_BCK=${_pj_id}-liff-20200823
 ```
 
@@ -262,8 +266,6 @@ cat app.yaml.template | sed "s/_uid/${_UID}/g" | sed "s/_yr_ch_scr/${_YR_CH_SCR}
 ```
 cat static/js/liff-starter.js.template | sed "s/_liff_id/${_LIFF_ID}/g" > static/js/liff-starter.js
 ```
-
-
 
 + App Engine にデプロイ
 
