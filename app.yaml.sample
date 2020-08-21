@@ -7,11 +7,14 @@ env_variables:
   YOUR_CHANNEL_ACCESS_TOKEN: ""
   LIFF_URL: ""  ## example line://app/{liffId}
   STORAGE_BUCKET: ""  ## example https://storage.googleapis.com/{Bucket Name}
-  # All URLs ending in .gif .png or .jpg are treated as paths to
+
+
+# All URLs ending in .gif .png or .jpg are treated as paths to
 # static files in the static/ directory. The URL pattern is a
 # regular expression, with a grouping that is inserted into the
 # path to the file.
 handlers:
+
 # All URLs ending in .gif .png or .jpg are treated as paths to
 # static files in the static/ directory. The URL pattern is a
 # regular expression, with a grouping that is inserted into the

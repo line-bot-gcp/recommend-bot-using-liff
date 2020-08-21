@@ -17,6 +17,19 @@
   + https://cloud.google.com/firestore/docs/quickstart-servers?hl=en#command-line
 
 
+## 事前に必要なもの
+
++ LINE Developer にて
+  + Provider 作成
+  + Channel 作成
+    + USER_ID
+    + YOUR_CHANNEL_SECRET
+    + YOUR_CHANNEL_ACCESS_TOKEN
+    + LIFF_URL
++ GCP
+  + 任意のプロジェクト作成
+
+
 ## GCP を操作するための準備をする
 
 + GCP の認証をする
@@ -29,6 +42,8 @@ gcloud auth login -q
 
 ```
 export _pj_id='Your GCP Project ID'
+
+export _pj_id='ca-igarashi-test-v5v2'
 
 gcloud config set project ${_pj_id}
 ```
@@ -45,11 +60,11 @@ gcloud beta services enable storage-component.googleapis.com
 
 ## ソースコードを取得する
 
-+ [WIP] 自分のワークスペースにて、このレポジトリを clone する
++ 自分のワークスペースにて、このレポジトリを clone する
 
 ```
-git clone https://hogehoge
-cd hogehoge
+git clone https://github.com/line-bot-gcp/recommend-bot-using-liff.git
+cd recommend-bot-using-liff.git
 ```
 
 ## Service Account の作成と Role の割り当て、Json Key の取得を行う
@@ -79,17 +94,28 @@ gcloud projects add-iam-policy-binding ${_pj_id} \
 gcloud iam service-accounts keys create ${_common}.json --iam-account ${_sa_mail}
 ```
 
+## [WIP] Firestore をデプロイする
+
+GCP コンソールの FireStore に行き、 `Native mode` を選択
+
+![](./images/readme-01.png)
+
+リージョンは `asia-northeast1` を選択
+
+![](./images/readme-02.png)
 
 
-## App Engine をデプロイする
+line-users というDBを作る??
+
+
+
+## [WIP] App Engine をデプロイする
 
 WIP
 
-## Firestore をデプロイする
 
-WIP
 
-## GCS にデプロイする
+## [WIP] GCS にデプロイする
 
 WIP
 
