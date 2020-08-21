@@ -161,8 +161,11 @@ GCP コンソールの FireStore に行き、 `Native mode` を選択
 ![](./images/readme-02.png)
 
 
-line-users というDBを作る??
+`line-users` という Collection ID を作る
 
+![](./images/readme-03.png)
+![](./images/readme-04.png)
+![](./images/readme-05.png)
 
 
 ## [WIP] App Engine をデプロイする
@@ -202,7 +205,7 @@ cat static/js/liff-starter.js.template | sed "s/_liff_id/${_LIFF_ID}/g" > static
 + App Engine にデプロイ
 
 ```
-gcloud app deploy
+gcloud app deploy -q
 ```
 
 ## 確認
