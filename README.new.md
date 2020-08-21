@@ -94,6 +94,47 @@ gcloud projects add-iam-policy-binding ${_pj_id} \
 gcloud iam service-accounts keys create ${_common}.json --iam-account ${_sa_mail}
 ```
 
+## [WIP] GCS に画像をアップロードする
+
++ bucket の作成
+
+```
+gsutil mb gs://${_pj_id}-liff-20200823
+gsutil ls | grep ${_pj_id}-liff-20200823
+```
+
++ GCS にイメージファイルをコピー
+
+```
+gsutil cp static/images/*.png gs://${_pj_id}-liff-20200823/
+gsutil ls gs://${_pj_id}-liff-20200823
+```
+
++ GCS にアップロードしたイメージを一般公開する
+
+```
+gsutil iam ch allUsers:objectViewer gs://${_pj_id}-liff-20200823
+
+```
+
+
++ GCS に
+
+maguro.png
+maguro_mini.png
+maguro1_half.png
+maguro2_half.png
+maguro3_half.png
+maguro4_half.png
+sushi.png
+menu0.png
+menu1.png
+menu2.png
+menu3.png
+
+
+
+
 ## [WIP] Firestore をデプロイする
 
 GCP コンソールの FireStore に行き、 `Native mode` を選択
@@ -115,9 +156,11 @@ WIP
 
 
 
-## [WIP] GCS にデプロイする
 
-WIP
+
+
+
+
 
 
 ## 確認
