@@ -1,3 +1,4 @@
 app.yaml
 !app-engine-dummy/app.yaml
 static/js/liff-starter.js
+*.gcloudignore
