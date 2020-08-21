@@ -1,6 +1,9 @@
 # -*- coding: utf-8 -*-
-from flask import Flask, request, render_template, make_response
+from flask import Flask, request, render_template, make_response,jsonify
 from flask_bootstrap import Bootstrap
+import json
+from flask_cors import CORS
+from google.cloud import firestore
 
 """ Usage of RichMenu Manager """
 from richmenu import RichMenu, RichMenuManager
@@ -41,7 +44,9 @@ STORAGE_BUCKET            = os.environ["STORAGE_BUCKET"]
 LIFF_URL                  = os.environ["LIFF_URL"]
 
 app = Flask(__name__)
+CORS(app)
 bootstrap = Bootstrap(app)
+db = firestore.Client()
 
 # LINE APIおよびWebhookの接続
 line_bot_api = LineBotApi(YOUR_CHANNEL_ACCESS_TOKEN)
@@ -181,6 +186,17 @@ def rich_menu3():
 @app.route('/')
 def do_get():
     return render_template('index_line.html')
+
+
+@app.route('/redirect')
+def redirect():
+    return redirect("/index")
+
+@app.route("/BBBB", methods=["POST"])
+def move_BBBB():
+    return render_template("index.html")
+
+
 # ryoshi
 @app.route('/ryoushi')
 def ryoushi():
@@ -202,9 +218,34 @@ def date():
 def final():
     return render_template('final.html')
 
-@app.route('/line')
+@app.route('/index')
 def line():
     return render_template('index.html')
+
+@app.route('/postText', methods=['POST'])
+def get_accesstoken():
+   text = request.json['text']
+   lower_text = text.lower() #converse letters to lowcase
+   return_data = {"result":lower_text}
+   print(lower_text)
+   return jsonify(ResultSet=json.dumps(return_data))
+
+@app.route('/userID', methods=['POST'])
+def get_useID():
+   text = request.json['userID']
+   name = request.json['displayName']
+   lower_text = text.lower() #converse letters to lowcase
+   lower_name = name.lower()
+   return_data = {"result":lower_text}
+   userTtest1 = "line-users"
+   doc_ref = db.collection(userTtest1).document(lower_name)
+   doc_ref.set({
+       u'name': lower_name,
+       u'line id': lower_text
+   })
+   print(lower_text)
+   return jsonify(ResultSet=json.dumps(return_data))
+
 
 @app.route("/callback", methods=['POST'])
 def callback():
@@ -317,5 +358,9 @@ def handle_message(event):
 
 
 if __name__ == '__main__':
-    app.debug = True
-    app.run()
+    app.run(
+        debug=True,
+        host='0.0.0.0',
+        port=int(os.environ.get('PORT', 8080))
+    )
+

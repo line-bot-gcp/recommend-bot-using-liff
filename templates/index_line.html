@@ -5,17 +5,33 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LIFF Starter</title>
+    <link rel="stylesheet" href="static/css/style.css">
     <link rel="stylesheet" href="static/css/style_sub.css">
-    <script charset="utf-8" src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
+
+    <script charset="utf-8" src="https://static.line-scdn.net/liff/edge/2.1/sdk.js"></script>
+
+    <!--Ajax using code-->
     <script src="static/js/liff-starter.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <!--bootstrap-->
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css"> -->
 </head>
 
 <body>
-    <div id="liffAppContent">
-        <div class="calender">
-            <label for="start">Start date:</label>
-            <input type="date" id="start" name="trip-start" value="2020-08-23" min="2020-08-23" max="2021-08-23">
+    <!-- <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-12">
+                <h1 class="text-center" id="hello">Hello Flask</h1>
+                <input type="text" class="form-control" id="input-text" placeholder="Please input text">
+                <button class="btn btn-default" id="button">Change text</button>
+            </div>
         </div>
+    </div> -->
+	<form action="/BBBB" method="POST">
+    	<input type="submit" value="ボタン">
+	</form>
+    <div id="liffAppContent">
         <!-- ACTION BUTTONS -->
         <div class="buttonGroup">
             <div class="buttonRow">
@@ -149,3 +165,4 @@
 </body>
 
 </html>
+
