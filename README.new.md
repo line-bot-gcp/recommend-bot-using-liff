@@ -43,7 +43,6 @@ gcloud auth login -q
 ```
 export _pj_id='Your GCP Project ID'
 
-export _pj_id='ca-igarashi-test-v5v2-0822'
 export _rg='asia-northeast1'
 export _zn='asia-northeast1-c'
 
@@ -156,7 +155,7 @@ gcloud app browse
 
 # gcloud app browse
 Did not detect your browser. Go to this link to view your app:
-https://ca-igarashi-test-v5v2-0822.an.r.appspot.com
+https://hogehoge.an.r.appspot.com
 ```
 ```
 cd -
@@ -238,22 +237,12 @@ Scan QR | 無し
 + app.yaml を作る
 
 ```
-
 export _UID="Your user ID"
 export _YR_CH_SCR="Your Channel secret"
 export _YR_CH_ACC_TKN="Your Channel access token"
 export _LIFF_URL=""
 export _YR_BCK=${_pj_id}-liff-20200823
-
-
-export _UID="Udfd12adfcc22b1633bfb80f270d75193"
-export _YR_CH_SCR="afc3386f3a74f9bfb00fbf303811e266"
-export _YR_CH_ACC_TKN=''
-export _LIFF_ID="1654838628-2kAyK3wZ"
-export _YR_BCK=${_pj_id}-liff-20200823
 ```
-
-
 
 + [WIP] template yaml から app を作る
 
