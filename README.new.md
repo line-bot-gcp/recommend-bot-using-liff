@@ -71,8 +71,12 @@ gcloud beta services enable storage-component.googleapis.com
 git clone https://github.com/line-bot-gcp/recommend-bot-using-liff.git
 cd recommend-bot-using-liff
 ```
+```
+### WIP
+git checkout feature/add-new-readme
+```
 
-## Service Account の作成と Role の割り当て、Json Key の取得を行う
+## [WIP] Service Account の作成と Role の割り当て、Json Key の取得を行う
 
 + Service Account の作成
 
@@ -123,18 +127,26 @@ gsutil iam ch allUsers:objectViewer gs://${_pj_id}-liff-20200823
 
 ## App Engine のダミーをデプロイする
 
++ ダミーの App Engine のディレクトリに移動
+
 ```
 cd app-engine-dummy
-cat hogehoge | sed hoggeho > hogehoge
 ```
+
++ App Engine をデプロイする
 
 ```
 gcloud app deploy
 ```
 ```
+### WIP
+
 export _app_url=$(gcloud app describe | grep defaultHostname | awk '{print $2}')
 echo ${_app_url}
 ```
+
++ App Engine の URL を確認する
+
 ```
 gcloud app browse
 ```
@@ -144,7 +156,7 @@ gcloud app browse
 
 # gcloud app browse
 Did not detect your browser. Go to this link to view your app:
-https://ca-igarashi-test-v5v2.an.r.appspot.com
+https://ca-igarashi-test-v5v2-0822.an.r.appspot.com
 ```
 ```
 cd -
@@ -166,6 +178,57 @@ GCP コンソールの FireStore に行き、 `Native mode` を選択
 ![](./images/readme-03.png)
 ![](./images/readme-04.png)
 ![](./images/readme-05.png)
+
+## LINE Developer の設定を行う
+
+### LINE Developer にて Messaging API を作る
+
+Messaging API の作成
+
+![](./images/readme-06.png)
+
+Key | Value
+:- | :-
+Channel name | liff-api-gcp-bot
+Channel descriptionl | liff-api-gcp-bot
+Category | どれでも
+Subcategory | どれでも
+Email address | あなたの Email
+
+token などを取得
+
++ `Basic settings` タブにて
+  + `Channel secret` を取得
+  + `Your user ID` を取得
++ `Messaging API` タブにて
+  + `Channel access token` を取得
+  + `Webhook URL` に App Engine の URL を入力 (WIP)(/callback が必要かも?)
+
+### LINE Login を作る
+
+![](./images/readme-07.png)
+
+Key | Value
+:- | :-
+Channel name | liff-login-gcp-bot
+Channel descriptionl | liff-api-gcp-bot
+App types | ✔ Web app <br>✔ Mobile app
+Email address | あなたの Email
+
+
+
+
+
+
+
+
+
+Size | Tall
+Endpoint URL | App Engine の URL (Ex. https://hogehoge)
+Scopes | `profile` `openid` `chat_message.write` の全てにチェックする
+Bot link feature | On(Nomal)
+Scan QR | 無し
+
 
 
 ## [WIP] App Engine をデプロイする
