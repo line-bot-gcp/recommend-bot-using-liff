@@ -2,11 +2,11 @@ runtime: python37
 entrypoint: gunicorn -b :$PORT app:app
 
 env_variables:
-  USER_ID: "_"
-  YOUR_CHANNEL_SECRET: ""
-  YOUR_CHANNEL_ACCESS_TOKEN: ""
-  LIFF_URL: ""  ## example line://app/{liffId}
-  STORAGE_BUCKET: ""  ## example https://storage.googleapis.com/{Bucket Name}
+  USER_ID: "_uid"
+  YOUR_CHANNEL_SECRET: "_yr_ch_scr"
+  YOUR_CHANNEL_ACCESS_TOKEN: "_yr_ch_acc_tkn"
+  LIFF_URL: "line://app/_liff_id"
+  STORAGE_BUCKET: "https://storage.googleapis.com/_yr_bck"
 
 
 # All URLs ending in .gif .png or .jpg are treated as paths to
