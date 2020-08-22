@@ -212,16 +212,19 @@ def urashima():
 
 @app.route('/date')
 def date():
-    session['username'] = ""
-    return render_template('date.html')
+    plan=session.get('plan')
+    reservation_time=session.get('reservation_time')
+    price=session.get('price')
+
+    return render_template('date.html',plan=plan,reservation_time=reservation_time,price=price)
 
 @app.route('/final')
 def final():
     teacher=session.get('teacher')
-    plan="test_p"
+    plan=session.get('plan')
     reservation_date="test_d"
-    reservation_time="test_t"
-    price="test_price"
+    reservation_time=session.get('reservation_time')
+    price=session.get('price')
     return render_template('final.html',teacher=teacher,plan=plan,reservation_date=reservation_date,reservation_time=reservation_time,price=price  )
 
 @app.route('/index')
@@ -251,6 +254,64 @@ def get_useID():
    })
    print(lower_text)
    return jsonify(ResultSet=json.dumps(return_data))
+
+@app.route('/ryoshipost/<id>', methods=['POST','GET'])
+def get_ryoshi(id):
+    planid=int(id)
+    if planid == 1:
+        session['plan']="エアマグロ漁レッスン"
+        session['price']="10,000"
+        session['reservation_time']="13:00~17:00"
+        print(session['plan'])
+    elif planid == 2:
+        session['plan']="マグロ漁レッスン"
+        session['price']="20,000"
+        session['reservation_time']="2:00~8:00"
+        print(session['plan'])
+    else:
+        session['plan']=""
+        print("not selected")
+    return redirect("/date")
+
+@app.route('/urashimapost/<id>', methods=['POST','GET'])
+def get_urashima(id):
+    planid=int(id)
+    if planid == 1:
+        session['plan']="エアマグロ釣りレッスン"
+        session['price']="10,000"
+        session['reservation_time']="13:00~17:00"
+        print(session['plan'])
+    elif planid == 2:
+        session['plan']="マグロ釣りレッスン"
+        session['price']="15,000"
+        session['reservation_time']="9:00~13:00(実質100年)"
+        print(session['plan'])
+    else:
+        session['plan']=""
+        session['price']=""
+        session['reservation_time']=""
+        print("not selected")
+    return redirect("/date")
+
+@app.route('/sumoguripost/<id>', methods=['POST','GET'])
+def get_sumoguri(id):
+    planid=int(id)
+    if planid == 1:
+        session['plan']="エアマグロ捕獲レッスン"
+        session['price']="8,000"
+        session['reservation_time']="13:00~17:00"
+        print(session['plan'])
+    elif planid == 2:
+        session['plan']="マグロ捕獲レッスン"
+        session['price']="10,000"
+        session['reservation_time']="6:00~10:00"
+        print(session['plan'])
+    else:
+        session['plan']=""
+        session['price']=""
+        session['reservation_time']=""
+        print("not selected")
+    return redirect("/date")
 
 
 @app.route("/callback", methods=['POST'])
