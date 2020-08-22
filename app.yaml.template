@@ -4,7 +4,7 @@ entrypoint: gunicorn -b :$PORT app:app
 env_variables:
   USER_ID: "_uid"
   YOUR_CHANNEL_SECRET: "_yr_ch_scr"
-  YOUR_CHANNEL_ACCESS_TOKEN: "_yr_ch_acc_tkn"
+  YOUR_CHANNEL_ACCESS_TOKEN: ""
   LIFF_URL: "line://app/_liff_id"
   STORAGE_BUCKET: "https://storage.googleapis.com/_yr_bck"
 
