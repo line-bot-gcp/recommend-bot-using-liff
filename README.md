@@ -189,7 +189,7 @@ Size | Tall
 Endpoint URL | App Engine の URL (Ex. https://hogehoge.appspot.com)
 Scopes | ✔ profile <br>✔ openid<br>✔ chat_message.write
 Bot link feature | On(Nomal)
-Scan QR | 無し
+Scan QR | 有り
 
 ### LIFF ID を確認する
 
@@ -240,30 +240,18 @@ gcloud app deploy
 
 ## 確認
 
-WIP
+![](./images/chk-bot-01.png)
 
+![](./images/chk-bot-02.png)
 
+![](./images/chk-bot-03.png)
 
+![](./images/chk-bot-04.png)
 
+![](./images/chk-bot-05.png)
 
+![](./images/chk-bot-06.png)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+![](./images/chk-bot-07.png)
 
 
