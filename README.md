@@ -21,14 +21,14 @@
 
 + LINE Developer にて
   + Provider 作成
-  + Channel 作成
-    + USER_ID
-    + YOUR_CHANNEL_SECRET
-    + YOUR_CHANNEL_ACCESS_TOKEN
-    + LIFF_URL
+    + Messaging API Channel 作成
+      + USER_ID
+      + YOUR_CHANNEL_SECRET
+      + YOUR_CHANNEL_ACCESS_TOKEN
+    + LINE Login Channel 作成
+      + LIFF_ID
 + GCP
   + 任意のプロジェクト作成
-
 
 ## GCP を操作するための準備をする
 
@@ -42,17 +42,14 @@ gcloud auth login -q
 
 ```
 export _pj_id='Your GCP Project ID'
-
 export _rg='asia-northeast1'
 export _zn='asia-northeast1-c'
-
-
 
 gcloud config set project ${_pj_id}
 gcloud config set compute/region ${_rg}
 ```
 
-+ [WIP] GCP Project 内で各コンポーネントの API を有効化する
++ GCP Project 内で各コンポーネントの API を有効化する
 
 ```
 gcloud beta services enable cloudbuild.googleapis.com && \
@@ -107,21 +104,21 @@ gcloud iam service-accounts keys create ${_common}.json --iam-account ${_sa_mail
 + bucket の作成
 
 ```
-gsutil mb gs://${_pj_id}-liff-20200823
-gsutil ls | grep ${_pj_id}-liff-20200823
+gsutil mb gs://${_pj_id}-recommend-bot-using-liff
+gsutil ls | grep ${_pj_id}-recommend-bot-using-liff
 ```
 
 + GCS にイメージファイルをコピー
 
 ```
-gsutil cp static/images/*.png gs://${_pj_id}-liff-20200823/
-gsutil ls gs://${_pj_id}-liff-20200823
+gsutil cp static/images/*.png gs://${_pj_id}-recommend-bot-using-liff/
+gsutil ls gs://${_pj_id}-recommend-bot-using-liff
 ```
 
 + GCS にアップロードしたイメージを一般公開する
 
 ```
-gsutil iam ch allUsers:objectViewer gs://${_pj_id}-liff-20200823
+gsutil iam ch allUsers:objectViewer gs://${_pj_id}-recommend-bot-using-liff
 ```
 
 ## App Engine のダミーをデプロイする
@@ -137,14 +134,9 @@ cd app-engine-dummy
 ```
 gcloud app deploy
 ```
-```
-### WIP
-
-export _app_url=$(gcloud app describe | grep defaultHostname | awk '{print $2}')
-echo ${_app_url}
-```
 
 + App Engine の URL を確認する
+  + 出てきた `https://hogehoge.zppspot.com` をコピーしておく
 
 ```
 gcloud app browse
@@ -157,11 +149,14 @@ gcloud app browse
 Did not detect your browser. Go to this link to view your app:
 https://hogehoge.an.r.appspot.com
 ```
+
++ root ディレクトリに戻る
+
 ```
 cd -
 ```
 
-## Firestore をデプロイする
+## Firestore を準備する
 
 GCP コンソールの FireStore に行き、 `Native mode` を選択
 
@@ -170,7 +165,6 @@ GCP コンソールの FireStore に行き、 `Native mode` を選択
 リージョンは `asia-northeast1` を選択
 
 ![](./images/readme-02.png)
-
 
 `line-users` という Collection ID を作る
 
@@ -223,7 +217,7 @@ Key | Value
 :- | :-
 LIFF app name | liff-login-setting
 Size | Tall
-Endpoint URL | App Engine の URL (Ex. https://hogehoge)
+Endpoint URL | App Engine の URL (Ex. https://hogehoge.appspot.com)
 Scopes | ✔ profile <br>✔ openid<br>✔ chat_message.write
 Bot link feature | On(Nomal)
 Scan QR | 無し
@@ -240,8 +234,8 @@ Scan QR | 無し
 export _UID="Your user ID"
 export _YR_CH_SCR="Your Channel secret"
 export _YR_CH_ACC_TKN="Your Channel access token"
-export _LIFF_URL=""
-export _YR_BCK=${_pj_id}-liff-20200823
+export _LIFF_ID=""
+export _YR_BCK=${_pj_id}-recommend-bot-using-liff
 ```
 
 + [WIP] template yaml から app を作る
