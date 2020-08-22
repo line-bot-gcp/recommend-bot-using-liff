@@ -191,7 +191,7 @@ def do_get():
 def redirect():
     return redirect("/index")
 
-@app.route("/BBBB", methods=["POST"])
+@app.route("/index", methods=["POST"])
 def move_BBBB():
     return render_template("index.html")
 
