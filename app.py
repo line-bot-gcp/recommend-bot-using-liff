@@ -181,16 +181,12 @@ def rich_menu3():
     rmm.apply(USER_ID, richmenu_id3)
     return None
 
-
+# first view
 @app.route('/')
 def do_get():
     return render_template('index_line.html')
 
-
-@app.route('/redirect')
-def redirect():
-    return redirect("/index")
-
+# index
 @app.route("/index", methods=["POST"])
 def move_BBBB():
     return render_template("index.html")
@@ -215,7 +211,12 @@ def date():
 
 @app.route('/final')
 def final():
-    return render_template('final.html')
+    teacher="test_t"
+    plan="test_p"
+    reservation_date="test_d"
+    reservation_time="test_t"
+    price="test_price"
+    return render_template('final.html',teacher=teacher,plan=plan,reservation_date=reservation_date,reservation_time=reservation_time,price=price  )
 
 @app.route('/index')
 def line():

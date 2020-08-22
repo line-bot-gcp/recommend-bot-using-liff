@@ -28,12 +28,14 @@
             </div>
         </div>
     </div> -->
-	<form action="/index" method="POST">
-    	<input type="submit" value="講師を予約する">
-	</form>
     <div id="liffAppContent">
         <!-- ACTION BUTTONS -->
         <div class="buttonGroup">
+            <div class="buttonRow">
+            <form action="/index" method="POST">
+    	        <input type="submit" value="講師を予約する">
+	        </form>
+            </div>
             <div class="buttonRow">
                 <button id="openWindowButton">Open External Window</button>
                 <button id="closeWindowButton">Close LIFF App</button>
@@ -131,10 +133,10 @@
         </div>
         <div id="statusMessage">
             <div id="isInClientMessage"></div>
-            <div id="apiReferenceMessage">
+            <!-- <div id="apiReferenceMessage">
                 <p>Available LIFF methods vary depending on the browser you use to open the LIFF app.</p>
                 <p>Please refer to the <a href="https://developers.line.biz/en/reference/liff/#initialize-liff-app">API reference page</a> for more information.</p>
-            </div>
+            </div> -->
         </div>
     </div>
     <!-- LIFF ID ERROR -->
