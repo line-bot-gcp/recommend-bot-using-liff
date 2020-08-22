@@ -16,6 +16,7 @@
       rel="stylesheet"
       href="https://unpkg.com/modern-css-reset/dist/reset.min.css"
     />
+    <script charset="utf-8" src="https://static.line-scdn.net/liff/edge/2.1/sdk.js"></script>
     <link rel="stylesheet" href="static/css/style.css" />
     <script src="static/js/liff-add.js"></script>
   </head>
@@ -58,7 +59,9 @@
               <dd>{{ price }}円</dd>
             </dl>
           </div>
-          <button class="button" ontouchstart="" id="finalLiffClose">この内容で予約する</button>
+          <form action="/closepost" method="POST">
+          <button class="button" type="submit" ontouchstart="" id="finalyoyaku">この内容で予約する</button>
+          </form>
         </section>
       </div>
     </main>

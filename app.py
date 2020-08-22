@@ -227,6 +227,7 @@ def final():
     price=session.get('price')
     return render_template('final.html',teacher=teacher,plan=plan,reservation_date=reservation_date,reservation_time=reservation_time,price=price  )
 
+
 @app.route('/index')
 def line():
     return render_template('index.html')
@@ -320,6 +321,37 @@ def get_finalpost():
    session['reservation_date']=lower_text
    print(lower_text)
    return redirect("/final")
+
+@app.route('/closepost', methods=['POST','GET'])
+def close():
+    teacher=session.get('teacher')
+    plan=session.get('plan')
+    reservation_date=session.get('reservation_date')
+    reservation_time=session.get('reservation_time')
+    price=session.get('price')
+    userID = request.json['userID']
+    displayName = request.json['displayName']
+    lower_text = userID.lower() #converse letters to lowcase
+    lower_name = displayName.lower()
+    line_user = "line-users"
+    doc_ref = db.collection(line_user).document(lower_name)
+    doc_ref.set({
+        u'name': lower_name,
+        u'line id': lower_text,
+        u'teacher': teacher,
+        u'plan': plan,
+        u'reservation_date': reservation_date,
+        u'reservation_time': reservation_time,
+        u'price': price
+
+    })
+    print("DB set")
+    return redirect("/close")
+
+@app.route('/close')
+def closeliff():
+    test = ""
+    return test
 
 
 @app.route("/callback", methods=['POST'])
@@ -425,10 +457,7 @@ def handle_message(event):
 
 
     else:
-        line_bot_api.reply_message(
-            event.reply_token,
-            TextSendMessage(text=event.message.text)
-        )
+        None
 
 
 
