@@ -67,10 +67,6 @@ gcloud beta services enable storage-component.googleapis.com
 git clone https://github.com/line-bot-gcp/recommend-bot-using-liff.git
 cd recommend-bot-using-liff
 ```
-```
-### WIP
-git checkout feature/add-new-readme
-```
 
 ## [WIP] Service Account の作成と Role の割り当て、Json Key の取得を行う
 
