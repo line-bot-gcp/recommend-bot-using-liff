@@ -1,0 +1,259 @@
+    html {
+        font-size: 62.5%;
+    }
+    
+    body {
+        color: #111111;
+        font-size: 1.6rem;
+        font-family: "Noto Sans JP", sans-serif;
+        letter-spacing: 0.01em;
+    }
+    
+    img {
+        /* display: block;
+    max-width: 100%; */
+        height: auto;
+    }
+    
+    .flex_area {
+        display: flex;
+    }
+    
+    ul {
+        list-style: none;
+        padding-inline-start: 0px;
+    }
+    
+    a {
+        color: #333333;
+        text-decoration: none;
+    }
+    /*
+ * header
+ */
+    
+    .header_title {
+        background-color: #004577;
+        color: #ffffff;
+        height: 48px;
+        padding: 6px 20px;
+    }
+    
+    .header_title h1 {
+        font-size: 2.4rem;
+        font-weight: bold;
+        letter-spacing: 0.1em;
+    }
+    /*
+ * main
+ */
+    
+    .inner {
+        margin: 24px 20px;
+    }
+    
+    .page_title {
+        margin-bottom: 16px;
+    }
+    
+    .page_title h2 {
+        font-size: 2rem;
+        font-weight: 500;
+    }
+    /* 
+ * coach page
+ */
+    
+    .link_to_course {
+        border-bottom: 1px solid #333333;
+        padding: 16px 0;
+    }
+    
+    .link_to_course:active {
+        opacity: 0.8;
+    }
+    
+    .link_to_course:hover {
+        opacity: 0.5;
+    }
+    
+    .border_top {
+        border-top: 1px solid #333333;
+    }
+    
+    .coach_text p {
+        font-size: 1.8rem;
+        font-weight: bold;
+        margin-bottom: 8px;
+        letter-spacing: 0.05em;
+    }
+    
+    .coach_text span {
+        font-size: 1.4rem;
+    }
+    /* 
+ * course page
+ */
+    
+    .link_to_date {
+        margin-bottom: 24px;
+    }
+    
+    .link_to_date:active {
+        opacity: 0.8;
+    }
+    
+    .link_to_date:hover {
+        opacity: 0.5;
+    }
+    
+    .course_detail {
+        padding: 16px;
+    }
+    
+    .course_detail h3 {
+        font-size: 2.4rem;
+        font-weight: bold;
+        margin-bottom: 16px;
+    }
+    
+    .course_detail p {
+        font-size: 1.6rem;
+        font-weight: 400;
+    }
+    /* 
+ * date page
+ */
+    
+    .current_selection {
+        border: 1px solid #333333;
+        padding: 24px 20px;
+        margin-bottom: 32px;
+    }
+    
+    .course_name {
+        font-size: 2.4rem;
+        font-weight: bold;
+    }
+    
+    .course_contents {
+        margin-top: 16px;
+        display: flex;
+        font-size: 1.6rem;
+    }
+    
+    .course_contents p {
+        font-weight: bold;
+        margin-right: 16px;
+    }
+    
+    .course_contents i {
+        font-size: 1.8rem;
+        margin-right: 4px;
+    }
+    /*
+ * map
+ */
+    
+    .google_calendar {
+        padding-bottom: 75%;
+    }
+    
+    .google_calendar iframe {
+        width: 100%;
+    }
+    /*
+ * final page
+ */
+    
+    .fishon {
+        margin-bottom: 24px;
+    }
+    
+    .final_selection {
+        margin-bottom: 16px;
+    }
+    
+    .final_selection dt {
+        font-size: 1.6rem;
+        font-weight: 300;
+        padding-top: 8px;
+    }
+    
+    .final_selection dd {
+        font-size: 2.4rem;
+        font-weight: bold;
+        margin-left: 48px;
+    }
+    
+    .ml32 dd {
+        margin-left: 32px;
+    }
+    
+    .mb0 {
+        margin-bottom: 0;
+    }
+    
+    .button {
+        font-size: 1.6rem;
+        font-weight: bold;
+        color: #ffffff;
+        text-align: center;
+        background-color: rgba(2, 31, 51, 1);
+        margin: 8px auto 40px;
+        width: 240px;
+        height: 48px;
+        display: block;
+        appearance: none;
+        border: none;
+        outline: none;
+    }
+    
+    .button:active {
+        background-color: rgba(2, 31, 51, 0.5);
+    }
+    
+    .button:hover {
+        background-color: rgba(2, 31, 51, 0.3);
+    }
+    /*
+ * liff sample
+ */
+    
+    #code-block {
+        background-color: #eee;
+        border: 1px solid #999;
+        display: block;
+        padding: 20px;
+        width: 50%;
+        margin-left: auto;
+        margin-right: auto;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+    
+    #profilePictureDiv {
+        text-align: center;
+    }
+    
+    #profileImageDiv {
+        height: 100px;
+        width: 100px;
+    }
+    
+    #statusMessage {
+        position: relative;
+        top: 40px;
+    }
+    
+    .textLeft {
+        text-align: left;
+    }
+    
+    .buttonGroup {
+        padding-top: 20px;
+    }
+    
+    .hidden {
+        display: none;
+    }
