@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from flask import Flask, request, render_template, make_response,jsonify
+from flask import Flask, request, render_template, make_response, jsonify, session, redirect, url_for
 from flask_bootstrap import Bootstrap
 import json
 from flask_cors import CORS
@@ -47,6 +47,8 @@ app = Flask(__name__)
 CORS(app)
 bootstrap = Bootstrap(app)
 db = firestore.Client()
+
+app.secret_key = 'A0Zr98j/3yX R~XHH!jmN]LWhoge'
 
 # LINE APIおよびWebhookの接続
 line_bot_api = LineBotApi(YOUR_CHANNEL_ACCESS_TOKEN)
@@ -195,23 +197,27 @@ def move_BBBB():
 # ryoshi
 @app.route('/ryoushi')
 def ryoushi():
+    session['teacher'] = "カリスマ漁師"
     return render_template('course_ryoushi.html')
 # sumkoguri
 @app.route('/sumoguri')
 def sumoguri():
+    session['teacher'] = "素潜りの達人"
     return render_template('course_sumoguri.html')
 # urashima
 @app.route('/urashima')
 def urashima():
+    session['teacher'] ="釣りの仙人"
     return render_template('course_urashima.html')
 
 @app.route('/date')
 def date():
+    session['username'] = ""
     return render_template('date.html')
 
 @app.route('/final')
 def final():
-    teacher="test_t"
+    teacher=session.get('teacher')
     plan="test_p"
     reservation_date="test_d"
     reservation_time="test_t"
