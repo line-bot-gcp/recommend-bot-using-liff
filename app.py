@@ -222,7 +222,7 @@ def date():
 def final():
     teacher=session.get('teacher')
     plan=session.get('plan')
-    reservation_date="test_d"
+    reservation_date=session.get('reservation_date')
     reservation_time=session.get('reservation_time')
     price=session.get('price')
     return render_template('final.html',teacher=teacher,plan=plan,reservation_date=reservation_date,reservation_time=reservation_time,price=price  )
@@ -312,6 +312,14 @@ def get_sumoguri(id):
         session['reservation_time']=""
         print("not selected")
     return redirect("/date")
+
+@app.route('/finalpost', methods=['POST','GET'])
+def get_finalpost():
+   text = request.form['trip-start']
+   lower_text = text.lower() #converse letters to lowcase
+   session['reservation_date']=lower_text
+   print(lower_text)
+   return redirect("/final")
 
 
 @app.route("/callback", methods=['POST'])
