@@ -240,18 +240,28 @@ gcloud app deploy
 
 ## 確認
 
+1. LINE のトークからリッチメニューを開き、 `漁師に相談` をクリック
+
 ![](./images/chk-bot-01.png)
+
+2. `ボタン` をクリック
 
 ![](./images/chk-bot-02.png)
 
+3. `素潜りの達人` `釣りの仙人` `カリスマ漁師` の中からどれかをクリック
+
 ![](./images/chk-bot-03.png)
+
+4. `レッスン` を選ぶ
 
 ![](./images/chk-bot-04.png)
 
+5. `日付` を選び、最終ページへをクリック
+
 ![](./images/chk-bot-05.png)
+
+6. 最終確認
 
 ![](./images/chk-bot-06.png)
 
 ![](./images/chk-bot-07.png)
-
-
