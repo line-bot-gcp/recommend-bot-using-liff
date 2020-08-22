@@ -68,33 +68,6 @@ git clone https://github.com/line-bot-gcp/recommend-bot-using-liff.git
 cd recommend-bot-using-liff
 ```
 
-## [WIP] Service Account の作成と Role の割り当て、Json Key の取得を行う
-
-+ Service Account の作成
-
-```
-export _common='liff-bot'
-
-gcloud iam service-accounts create ${_common} \
-    --display-name ${_common}
-```
-
-+ 作成した Service Account に Project Owner の Role を付与
-
-```
-export _sa_mail=$(gcloud iam service-accounts list | grep ${_common} | awk '{print $2}')
-
-gcloud projects add-iam-policy-binding ${_pj_id} \
-    --member "serviceAccount:${_sa_mail}" \
-    --role "roles/owner"
-```
-
-+ 作成した Service Account を実行する Json ファイルの生成
-
-```
-gcloud iam service-accounts keys create ${_common}.json --iam-account ${_sa_mail}
-```
-
 ## GCS に画像をアップロードする
 
 + bucket の作成
@@ -222,22 +195,34 @@ Scan QR | 無し
 
 ![](./images/readme-09.png)
 
-## [WIP] App Engine をデプロイする
+## App Engine をデプロイする
 
 + app.yaml を作る
+  + :warning: Channel access token だけは特殊文字が入るため、自分で後ほど入れる
 
 ```
 export _UID="Your user ID"
 export _YR_CH_SCR="Your Channel secret"
 export _YR_CH_ACC_TKN="Your Channel access token"
-export _LIFF_ID=""
 export _YR_BCK=${_pj_id}-recommend-bot-using-liff
 ```
 
-+ [WIP] template yaml から app を作る
++ template yaml から app を作る
+  + :warning: Channel access token だけは特殊文字が入るため、自分で後ほど入れる
 
 ```
 cat app.yaml.template | sed "s/_uid/${_UID}/g" | sed "s/_yr_ch_scr/${_YR_CH_SCR}/g" | sed "s/_LIFF_ID/${_liff_id}/g" | sed "s/_liff_id/${_LIFF_ID}/g" | sed "s/_yr_bck/${_YR_BCK}/g" > app.yaml
+```
+
++ 作成した app.yaml に Channel access token を Vim で入れる
+
+```
+vim app.yaml
+
+
+=====================
+
+YOUR_CHANNEL_ACCESS_TOKEN: ""  <----- ここにいれる
 ```
 
 + liff-starter.js.template から作る
@@ -246,10 +231,11 @@ cat app.yaml.template | sed "s/_uid/${_UID}/g" | sed "s/_yr_ch_scr/${_YR_CH_SCR}
 cat static/js/liff-starter.js.template | sed "s/_liff_id/${_LIFF_ID}/g" > static/js/liff-starter.js
 ```
 
-+ App Engine にデプロイ
++ 改めて、App Engine にデプロイ
+  + 最初にデプロイしたダミーは上書きされるので :ok:
 
 ```
-gcloud app deploy -q
+gcloud app deploy
 ```
 
 ## 確認
