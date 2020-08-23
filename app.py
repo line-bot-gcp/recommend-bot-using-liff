@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from flask import Flask, request, render_template, make_response,jsonify
+from flask import Flask, request, render_template, make_response, jsonify, session, redirect, url_for
 from flask_bootstrap import Bootstrap
 import json
 from flask_cors import CORS
@@ -47,6 +47,8 @@ app = Flask(__name__)
 CORS(app)
 bootstrap = Bootstrap(app)
 db = firestore.Client()
+
+app.secret_key = 'A0Zr98j/3yX R~XHH!jmN]LWhoge'
 
 # LINE APIおよびWebhookの接続
 line_bot_api = LineBotApi(YOUR_CHANNEL_ACCESS_TOKEN)
@@ -181,17 +183,13 @@ def rich_menu3():
     rmm.apply(USER_ID, richmenu_id3)
     return None
 
-
+# first view
 @app.route('/')
 def do_get():
     return render_template('index_line.html')
 
-
-@app.route('/redirect')
-def redirect():
-    return redirect("/index")
-
-@app.route("/BBBB", methods=["POST"])
+# index
+@app.route("/index", methods=["POST"])
 def move_BBBB():
     return render_template("index.html")
 
@@ -199,23 +197,36 @@ def move_BBBB():
 # ryoshi
 @app.route('/ryoushi')
 def ryoushi():
+    session['teacher'] = "カリスマ漁師"
     return render_template('course_ryoushi.html')
 # sumkoguri
 @app.route('/sumoguri')
 def sumoguri():
+    session['teacher'] = "素潜りの達人"
     return render_template('course_sumoguri.html')
 # urashima
 @app.route('/urashima')
 def urashima():
+    session['teacher'] ="釣りの仙人"
     return render_template('course_urashima.html')
 
 @app.route('/date')
 def date():
-    return render_template('date.html')
+    plan=session.get('plan')
+    reservation_time=session.get('reservation_time')
+    price=session.get('price')
+
+    return render_template('date.html',plan=plan,reservation_time=reservation_time,price=price)
 
 @app.route('/final')
 def final():
-    return render_template('final.html')
+    teacher=session.get('teacher')
+    plan=session.get('plan')
+    reservation_date=session.get('reservation_date')
+    reservation_time=session.get('reservation_time')
+    price=session.get('price')
+    return render_template('final.html',teacher=teacher,plan=plan,reservation_date=reservation_date,reservation_time=reservation_time,price=price  )
+
 
 @app.route('/index')
 def line():
@@ -235,6 +246,8 @@ def get_useID():
    name = request.json['displayName']
    lower_text = text.lower() #converse letters to lowcase
    lower_name = name.lower()
+   session['userID'] = str(lower_text)
+   session['displayName'] = str(lower_name)
    return_data = {"result":lower_text}
    userTtest1 = "line-users"
    doc_ref = db.collection(userTtest1).document(lower_name)
@@ -244,6 +257,102 @@ def get_useID():
    })
    print(lower_text)
    return jsonify(ResultSet=json.dumps(return_data))
+
+@app.route('/ryoshipost/<id>', methods=['POST','GET'])
+def get_ryoshi(id):
+    planid=int(id)
+    if planid == 1:
+        session['plan']="エアマグロ漁レッスン"
+        session['price']="10,000"
+        session['reservation_time']="13:00~17:00"
+        print(session['plan'])
+    elif planid == 2:
+        session['plan']="マグロ漁レッスン"
+        session['price']="20,000"
+        session['reservation_time']="2:00~8:00"
+        print(session['plan'])
+    else:
+        session['plan']=""
+        print("not selected")
+    return redirect("/date")
+
+@app.route('/urashimapost/<id>', methods=['POST','GET'])
+def get_urashima(id):
+    planid=int(id)
+    if planid == 1:
+        session['plan']="エアマグロ釣りレッスン"
+        session['price']="10,000"
+        session['reservation_time']="13:00~17:00"
+        print(session['plan'])
+    elif planid == 2:
+        session['plan']="マグロ釣りレッスン"
+        session['price']="15,000"
+        session['reservation_time']="9:00~13:00(実質100年)"
+        print(session['plan'])
+    else:
+        session['plan']=""
+        session['price']=""
+        session['reservation_time']=""
+        print("not selected")
+    return redirect("/date")
+
+@app.route('/sumoguripost/<id>', methods=['POST','GET'])
+def get_sumoguri(id):
+    planid=int(id)
+    if planid == 1:
+        session['plan']="エアマグロ捕獲レッスン"
+        session['price']="8,000"
+        session['reservation_time']="13:00~17:00"
+        print(session['plan'])
+    elif planid == 2:
+        session['plan']="マグロ捕獲レッスン"
+        session['price']="10,000"
+        session['reservation_time']="6:00~10:00"
+        print(session['plan'])
+    else:
+        session['plan']=""
+        session['price']=""
+        session['reservation_time']=""
+        print("not selected")
+    return redirect("/date")
+
+@app.route('/finalpost', methods=['POST','GET'])
+def get_finalpost():
+   text = request.form['trip-start']
+   lower_text = text.lower() #converse letters to lowcase
+   session['reservation_date']=lower_text
+   print(lower_text)
+   return redirect("/final")
+
+@app.route('/closepost', methods=['POST','GET'])
+def close():
+    teacher=session.get('teacher')
+    plan=session.get('plan')
+    reservation_date=session.get('reservation_date')
+    reservation_time=session.get('reservation_time')
+    price=session.get('price')
+    userID=session.get('userID')
+    displayName=session.get('displayName')
+    # lower_text=userID.lower() #converse letters to lowcase
+    # lower_name=displayName.lower()
+    # line_user="line-users"
+    # doc_ref = db.collection("line-users").document(lower_name)
+    # doc_ref.set({
+    #     u'name': lower_name,
+    #     u'line id': lower_text,
+    #     u'teacher': teacher,
+    #     u'plan': plan,
+    #     u'reservation_date': reservation_date,
+    #     u'reservation_time': reservation_time,
+    #     u'price': price
+
+    # })
+    # print("DB set")
+    return redirect("/Finishliff")
+
+@app.route('/Finishliff')
+def closeliff():
+    return render_template('Finishliff.html')
 
 
 @app.route("/callback", methods=['POST'])
@@ -349,10 +458,7 @@ def handle_message(event):
 
 
     else:
-        line_bot_api.reply_message(
-            event.reply_token,
-            TextSendMessage(text=event.message.text)
-        )
+        None
 
 
 

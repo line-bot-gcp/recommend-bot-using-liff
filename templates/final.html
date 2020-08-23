@@ -16,9 +16,12 @@
       rel="stylesheet"
       href="https://unpkg.com/modern-css-reset/dist/reset.min.css"
     />
-    <link rel="stylesheet" href="css/style.css" />
+    <script charset="utf-8" src="https://static.line-scdn.net/liff/edge/2.1/sdk.js"></script>
+    <link rel="stylesheet" href="static/css/style.css" />
+    <script src="static/js/liff-add.js"></script>
   </head>
   <body>
+    <div id="liffAppContent2">
     <header>
       <div class="header_title">
         <h1>予約</h1>
@@ -38,28 +41,80 @@
           <div class="current_selection">
             <dl class="flex_area final_selection">
               <dt>講師</dt>
-              <dd>カリスマ漁師</dd>
+              <dd>{{ teacher }}</dd>
             </dl>
             <dl class="flex_area final_selection ml32">
               <dt>プラン</dt>
-              <dd>マグロ漁レッスン</dd>
+              <dd>{{ plan }}</dd>
             </dl>
             <dl class="flex_area final_selection">
               <dt>日付</dt>
-              <dd>2020 / 08 / 17</dd>
+              <dd>{{ reservation_date }}</dd>
             </dl>
             <dl class="flex_area final_selection ml32">
               <dt>時間帯</dt>
-              <dd>2:00 - 8:00</dd>
+              <dd>{{ reservation_time }}</dd>
             </dl>
             <dl class="flex_area final_selection mb0">
               <dt>料金</dt>
-              <dd>20,000 円</dd>
+              <dd>{{ price }}円</dd>
             </dl>
           </div>
-          <button class="button" ontouchstart="">この内容で予約する</button>
+
+        <script type="text/javascript">
+            var teacher = {{ teacher }}
+            var plan = {{ plan }}
+            var reservation_date = {{ reservation_date }}
+            var reservation_time = {{ reservation_time }}
+            var price = {{ price }}
+
+             document.getElementById('finalyoyaku').addEventListener('click', function() {
+        if (!liff.isInClient()) {
+            sendAlertIfNotInClient();
+        } else {
+            liff.sendMessages([{
+                'type': 'text',
+                'text': teacher
+            },{
+            type: 'text',
+            text: plan
+            },{
+            type: 'text',
+            text: reservation_date
+            },{
+            type: 'text',
+            text: reservation_time
+            },{
+            type: 'text',
+            text: price
+            }
+            
+            ]).then(function() {
+                window.alert('Message sent');
+            }).catch(function(error) {
+                window.alert('Error sending message: ' + error);
+            });
+        }
+    });
+
+
+        </script>
+        <script type="text/javascript" src="static/js/liff-add.js"></script>
+          <form action="/closepost" method="POST">
+          <button class="button" type="submit" ontouchstart="" id="finalyoyaku">この内容で予約する</button>
+          </form>
         </section>
       </div>
     </main>
+     <!-- LIFF INIT ERROR -->
+    <div id="liffInitErrorMessage2" class="hidden">
+        <p>Something went wrong with LIFF initialization.</p>
+        <p>LIFF initialization can fail if a user clicks "Cancel" on the "Grant permission" screen, or if an error occurs in the process of <code>liff.init()</code>.</p>
+    </div>
+    <!-- NODE.JS LIFF ID ERROR -->
+    <div id="nodeLiffIdErrorMessage2" class="hidden">
+        <p>Unable to receive the LIFF ID as an environment variable.</p>
+    </div>
+</div>
   </body>
 </html>
