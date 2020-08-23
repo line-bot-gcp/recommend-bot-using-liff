@@ -1,6 +1,6 @@
 window.onload = function() {
     const useNodeJS = false; // if you are not using a node server, set this value to false
-    const defaultLiffId = ""; // change the default LIFF value if you are not using a node server
+    const defaultLiffId = "1654839039-9xxV03xn"; // change the default LIFF value if you are not using a node server
 
     // DO NOT CHANGE THIS
     let myLiffId = "";
@@ -17,7 +17,7 @@ window.onload = function() {
                 initializeLiffOrDie(myLiffId);
             })
             .catch(function(error) {
-                document.getElementById("liffAppContent").classList.add('hidden');
+                document.getElementById("liffAppContent2").classList.add('hidden');
                 document.getElementById("nodeLiffIdErrorMessage").classList.remove('hidden');
             });
     } else {
@@ -32,7 +32,7 @@ window.onload = function() {
  */
 function initializeLiffOrDie(myLiffId) {
     if (!myLiffId) {
-        document.getElementById("liffAppContent").classList.add('hidden');
+        document.getElementById("liffAppContent2").classList.add('hidden');
         document.getElementById("liffIdErrorMessage").classList.remove('hidden');
     } else {
         initializeLiff(myLiffId);
@@ -43,7 +43,7 @@ function initializeLiffOrDie(myLiffId) {
  * Initialize LIFF
  * @param {string} myLiffId The LIFF ID of the selected element
  */
-function initializeLiff(myLiffId) {
+function initializeLiff2(myLiffId) {
     liff
         .init({
             liffId: myLiffId
@@ -53,8 +53,8 @@ function initializeLiff(myLiffId) {
             initializeApp();
         })
         .catch((err) => {
-            document.getElementById("liffAppContent").classList.add('hidden');
-            document.getElementById("liffInitErrorMessage").classList.remove('hidden');
+            document.getElementById("liffAppContent2").classList.add('hidden');
+            document.getElementById("liffInitErrorMessage2").classList.remove('hidden');
         });
 }
 
@@ -80,6 +80,14 @@ function registerButtonHandlers() {
         .catch((err) => {
           console.log('error', err);
         });
+        liff.sendMessages([{
+                'type': 'text',
+                'text': "予約"
+            }]).then(function() {
+                window.alert('予約しました');
+            }).catch(function(error) {
+                window.alert('Error sending message: ' + error);
+        });
         //ajax code add
         var textData = JSON.stringify({ "userID": userID, "displayName": name });
         console.log(profile.userId)
@@ -101,6 +109,8 @@ function registerButtonHandlers() {
             liff.closeWindow();
         }
     });
+
+    
 
 
 

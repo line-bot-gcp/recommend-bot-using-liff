@@ -21,6 +21,7 @@
     <script src="static/js/liff-add.js"></script>
   </head>
   <body>
+    <div id="liffAppContent2">
     <header>
       <div class="header_title">
         <h1>予約</h1>
@@ -59,11 +60,61 @@
               <dd>{{ price }}円</dd>
             </dl>
           </div>
+
+        <script type="text/javascript">
+            var teacher = {{ teacher }}
+            var plan = {{ plan }}
+            var reservation_date = {{ reservation_date }}
+            var reservation_time = {{ reservation_time }}
+            var price = {{ price }}
+
+             document.getElementById('finalyoyaku').addEventListener('click', function() {
+        if (!liff.isInClient()) {
+            sendAlertIfNotInClient();
+        } else {
+            liff.sendMessages([{
+                'type': 'text',
+                'text': teacher
+            },{
+            type: 'text',
+            text: plan
+            },{
+            type: 'text',
+            text: reservation_date
+            },{
+            type: 'text',
+            text: reservation_time
+            },{
+            type: 'text',
+            text: price
+            }
+            
+            ]).then(function() {
+                window.alert('Message sent');
+            }).catch(function(error) {
+                window.alert('Error sending message: ' + error);
+            });
+        }
+    });
+
+
+        </script>
+        <script type="text/javascript" src="static/js/liff-add.js"></script>
           <form action="/closepost" method="POST">
           <button class="button" type="submit" ontouchstart="" id="finalyoyaku">この内容で予約する</button>
           </form>
         </section>
       </div>
     </main>
+     <!-- LIFF INIT ERROR -->
+    <div id="liffInitErrorMessage2" class="hidden">
+        <p>Something went wrong with LIFF initialization.</p>
+        <p>LIFF initialization can fail if a user clicks "Cancel" on the "Grant permission" screen, or if an error occurs in the process of <code>liff.init()</code>.</p>
+    </div>
+    <!-- NODE.JS LIFF ID ERROR -->
+    <div id="nodeLiffIdErrorMessage2" class="hidden">
+        <p>Unable to receive the LIFF ID as an environment variable.</p>
+    </div>
+</div>
   </body>
 </html>

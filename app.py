@@ -246,6 +246,8 @@ def get_useID():
    name = request.json['displayName']
    lower_text = text.lower() #converse letters to lowcase
    lower_name = name.lower()
+   session['userID'] = str(lower_text)
+   session['displayName'] = str(lower_name)
    return_data = {"result":lower_text}
    userTtest1 = "line-users"
    doc_ref = db.collection(userTtest1).document(lower_name)
@@ -329,29 +331,28 @@ def close():
     reservation_date=session.get('reservation_date')
     reservation_time=session.get('reservation_time')
     price=session.get('price')
-    userID = request.json['userID']
-    displayName = request.json['displayName']
-    lower_text = userID.lower() #converse letters to lowcase
-    lower_name = displayName.lower()
-    line_user = "line-users"
-    doc_ref = db.collection(line_user).document(lower_name)
-    doc_ref.set({
-        u'name': lower_name,
-        u'line id': lower_text,
-        u'teacher': teacher,
-        u'plan': plan,
-        u'reservation_date': reservation_date,
-        u'reservation_time': reservation_time,
-        u'price': price
+    userID=session.get('userID')
+    displayName=session.get('displayName')
+    # lower_text=userID.lower() #converse letters to lowcase
+    # lower_name=displayName.lower()
+    # line_user="line-users"
+    # doc_ref = db.collection("line-users").document(lower_name)
+    # doc_ref.set({
+    #     u'name': lower_name,
+    #     u'line id': lower_text,
+    #     u'teacher': teacher,
+    #     u'plan': plan,
+    #     u'reservation_date': reservation_date,
+    #     u'reservation_time': reservation_time,
+    #     u'price': price
 
-    })
-    print("DB set")
-    return redirect("/close")
+    # })
+    # print("DB set")
+    return redirect("/Finishliff")
 
-@app.route('/close')
+@app.route('/Finishliff')
 def closeliff():
-    test = ""
-    return test
+    return render_template('Finishliff.html')
 
 
 @app.route("/callback", methods=['POST'])
